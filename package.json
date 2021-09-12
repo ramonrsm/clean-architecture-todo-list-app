@@ -1,0 +1,29 @@
+{
+  "name": "clean-architecture-todo-list-app",
+  "version": "0.0.1",
+  "description": "This project is intended to show the power of scale by using clean architecture in a project, even with an application with \"simple\" functionality such as a ToDo List.",
+  "main": "dist/index.js",
+  "scripts": {
+    "dev": "ts-node src/index.ts",
+    "test": "jest"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ramonrsm/clean-architecture-todo-list-app.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/ramonrsm/clean-architecture-todo-list-app/issues"
+  },
+  "homepage": "https://github.com/ramonrsm/clean-architecture-todo-list-app#readme",
+  "devDependencies": {
+    "@types/jest": "^27.0.1",
+    "@types/node": "^16.9.1",
+    "jest": "^27.1.1",
+    "ts-jest": "^27.0.5",
+    "ts-node": "^10.2.1",
+    "typescript": "^4.4.3"
+  }
+}
