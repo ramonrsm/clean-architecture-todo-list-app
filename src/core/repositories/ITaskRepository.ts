@@ -5,7 +5,7 @@ export default interface ITaskRepository {
   
   getAll(): Promise<Task[]>;
 
-  rename(id: string): Promise<void>;
+  update(id: string, data: Task): Promise<void>;
 
   remove(id: string): Promise<void>;
 };

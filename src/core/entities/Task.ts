@@ -16,12 +16,4 @@ export default class Task {
     this.todo = todo;
     this.completionDate = completionDate;
   }
-
-  do() {
-    this.done = true;
-  }
-
-  undo() {
-    this.done = false;
-  }
 }
