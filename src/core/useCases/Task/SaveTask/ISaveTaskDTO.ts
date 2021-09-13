@@ -1,6 +1,4 @@
-import { ITask } from "@core/entities/Task";
-
-export default interface ISaveTaskDTO extends ITask {
+export default interface ISaveTaskDTO {
   todo: string;
   completionDate?: Date;
 }
