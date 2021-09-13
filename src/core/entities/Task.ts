@@ -1,8 +1,8 @@
-import { v4 as uuid } from 'uuid';
+import { v4 as uuid } from "uuid";
 
 export interface ITask {
   id?: string;
-  
+
   todo: string;
 
   done?: boolean;

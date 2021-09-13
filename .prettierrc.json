@@ -4,5 +4,7 @@
   "singleQuote": false,
   "printWidth": 120,
   "proseWrap": "always",
-  "arrowParens": "avoid"
+  "arrowParens": "avoid",
+  "endOfLine": "lf",
+  "tabWidth": 2
 }

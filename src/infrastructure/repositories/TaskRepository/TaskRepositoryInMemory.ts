@@ -38,7 +38,7 @@ export default class TaskRepositoryInMemory implements ITaskRepository {
   async delete(id: string): Promise<void> {
     const task = this.databaseInMemory.tasks.find(task => task.id === id);
 
-    if(task) {
+    if (task) {
       this.databaseInMemory.tasks.splice(this.databaseInMemory.tasks.indexOf(task), 1);
     }
   }

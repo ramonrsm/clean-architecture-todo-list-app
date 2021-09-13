@@ -32,7 +32,7 @@
       "@core/*": ["src/core/*"],
       "@useCases/*": ["src/core/useCases/*"],
       "@adapters/*": ["src/adapters/*"],
-      "@infrastructure/*": ["src/infrastructure/*"],
+      "@infrastructure/*": ["/src/infrastructure/*"],
       "@exceptions/*": ["src/exceptions/*"]
     } /* Specify a set of entries that re-map imports to additional lookup locations. */,
     // "rootDirs": [],                                   /* Allow multiple folders to be treated as one when resolving modules. */
@@ -104,5 +104,5 @@
     "skipLibCheck": true /* Skip type checking all .d.ts files. */
   },
   "include": ["src"],
-  "exclude": ["./jest.config.ts"]
+  "exclude": ["./jest.config.ts", "./src/**/*.test.ts"]
 }
