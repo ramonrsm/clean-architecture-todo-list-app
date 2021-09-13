@@ -1,8 +1,7 @@
-import IAddTaskDTO from "@core/useCases/Task/AddTask/IAddTaskDTO";
-import Task from "@core/entities/Task";
+import Task, { ITask } from "@core/entities/Task";
 
 export default class TaskAdapter {
-  static create(data: IAddTaskDTO): Task {
-    return new Task(data.todo, data.completionDate);
+  static create(data: ITask): Task {
+    return new Task(data);
   }
 }

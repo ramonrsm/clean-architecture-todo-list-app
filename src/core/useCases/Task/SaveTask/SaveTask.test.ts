@@ -1,18 +1,18 @@
-import AddTaskUseCase from "@useCases/Task/AddTask/AddTaskUseCase";
 import DatabaseInMemory from "@infrastructure/database/DatabaseInMemory";
+import SaveTaskUseCase from "@core/useCases/Task/SaveTask/SaveTaskUseCase";
 import TaskRepositoryInMemory from "@infrastructure/repositories/TaskRepository/TaskRepositoryInMemory";
 
 describe("Add task use case in memory", () => {
-  test("Should add task ", () => {
+  test("Should add task", () => {
     const database = new DatabaseInMemory();
 
     const taskRepository = new TaskRepositoryInMemory(database);
 
-    const addTaskUseCase = new AddTaskUseCase(taskRepository);
+    const saveTaskUseCase = new SaveTaskUseCase(taskRepository);
 
-    addTaskUseCase.execute({ todo: "Study English" });
+    saveTaskUseCase.execute({ todo: "Study English" });
 
-    const tasks = taskRepository.getAll();
+    const tasks = taskRepository.find();
 
     expect(tasks).resolves.toHaveLength(1);
   });

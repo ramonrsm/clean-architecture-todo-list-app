@@ -1,5 +1,17 @@
 import { v4 as uuid } from 'uuid';
 
+export interface ITask {
+  id?: string;
+  
+  todo: string;
+
+  done?: boolean;
+
+  completionDate?: Date | undefined;
+
+  completedAt?: Date | undefined;
+}
+
 export default class Task {
   readonly id?: string;
 
@@ -11,9 +23,9 @@ export default class Task {
 
   completedAt: Date | undefined;
 
-  constructor(todo: string, completionDate?: Date, id?: string) {
-    this.id = id || uuid();
-    this.todo = todo;
-    this.completionDate = completionDate;
+  constructor(props: ITask) {
+    this.id = props.id || uuid();
+    this.todo = props.todo;
+    this.completionDate = props.completionDate;
   }
 }
