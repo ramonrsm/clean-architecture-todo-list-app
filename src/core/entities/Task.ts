@@ -7,9 +7,9 @@ export interface ITask {
 
   done?: boolean;
 
-  completionDate?: Date | undefined;
+  completionDate?: Date | null;
 
-  completedAt?: Date | undefined;
+  completedAt?: Date | null;
 }
 
 export default class Task {
@@ -17,15 +17,16 @@ export default class Task {
 
   todo: string;
 
-  done: boolean = false;
+  done?: boolean = false;
 
-  completionDate: Date | undefined;
+  completionDate?: Date | null;
 
-  completedAt: Date | undefined;
+  completedAt: Date | null = null;
 
   constructor(props: ITask) {
     this.id = props.id || uuid();
     this.todo = props.todo;
+    this.done = props.done;
     this.completionDate = props.completionDate;
   }
 }
