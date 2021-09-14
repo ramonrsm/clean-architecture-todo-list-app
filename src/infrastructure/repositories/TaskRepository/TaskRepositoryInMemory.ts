@@ -2,6 +2,8 @@ import DatabaseInMemory from "src/infrastructure/database/DatabaseInMemory";
 import ITaskRepository from "@core/repositories/ITaskRepository";
 import Task from "@core/entities/Task";
 
+const DELETE_COUNT = 1;
+
 export default class TaskRepositoryInMemory implements ITaskRepository {
   private databaseInMemory: DatabaseInMemory;
 
@@ -29,7 +31,7 @@ export default class TaskRepositoryInMemory implements ITaskRepository {
     if (task) {
       const updatedTask = Object.assign(task, data);
 
-      this.databaseInMemory.tasks.splice(this.databaseInMemory.tasks.indexOf(task), 1);
+      this.databaseInMemory.tasks.splice(this.databaseInMemory.tasks.indexOf(task), DELETE_COUNT);
 
       this.databaseInMemory.tasks.push(updatedTask);
     }
@@ -39,7 +41,7 @@ export default class TaskRepositoryInMemory implements ITaskRepository {
     const task = this.databaseInMemory.tasks.find(task => task.id === id);
 
     if (task) {
-      this.databaseInMemory.tasks.splice(this.databaseInMemory.tasks.indexOf(task), 1);
+      this.databaseInMemory.tasks.splice(this.databaseInMemory.tasks.indexOf(task), DELETE_COUNT);
     }
   }
 }
