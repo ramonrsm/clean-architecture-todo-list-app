@@ -9,5 +9,6 @@ module.exports = {
     "@adapters/(.*)": "<rootDir>/src/adapters/$1",
     "@infrastructure/(.*)": "<rootDir>/src/infrastructure/$1",
     "@exceptions/(.*)": "<rootDir>/src/exceptions/$1",
+    "@config/(.*)": "<rootDir>/src/config/$1",
   },
 };
