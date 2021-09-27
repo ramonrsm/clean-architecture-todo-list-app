@@ -1,14 +1,24 @@
-import dotenv from "dotenv";
 import dotenvExpand from "dotenv-expand";
+import dotenvFlow from "dotenv-flow";
 import path from "path";
-export default class Process {
+
+const ARG_NODE_ENV = /^node-env=(test|development|production)$/;
+
+const Ambients: System.AmbientType[] = ["development", "production", "test"];
+class Process {
   private static _instance: Process;
   private _env: System.Env | null = null;
 
   private constructor() {
-    if (!process.env.NODE_ENV) throw new Error("Defina a variável de ambiente NODE_ENV.");
+    const arg_node_env = process.argv.find(arg => arg.match(ARG_NODE_ENV));
 
-    const processEnv = this.LoadEnv(process.env.NODE_ENV);
+    const NODE_ENV = arg_node_env?.replace(ARG_NODE_ENV, "$1") as System.AmbientType;
+
+    if (!Ambients.includes(NODE_ENV)) {
+      throw new Error("Informe a variável de ambiente válida `npm run dev node-env={development|production|test}`.");
+    }
+
+    const processEnv = this.LoadEnv(NODE_ENV);
 
     this._env = this.BuildEnv(processEnv);
   }
@@ -31,9 +41,7 @@ export default class Process {
   }
 
   private LoadEnv(ambient?: System.AmbientType): NodeJS.ProcessEnv {
-    const envFile = ambient ? `.env.${ambient}` : ".env";
-
-    const result = dotenv.config({ path: path.resolve(__dirname, "..", "..", envFile) });
+    const result = dotenvFlow.config({ default_node_env: ambient, path: path.resolve(__dirname, "..", "..") });
 
     if (result.error) {
       throw result.error;
@@ -63,3 +71,7 @@ export default class Process {
     return env;
   }
 }
+
+const ProcessEnv = Process.instance;
+
+export default ProcessEnv;
