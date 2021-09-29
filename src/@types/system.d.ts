@@ -10,7 +10,7 @@ declare namespace System {
       USER: string;
       PASSWORD: string;
       HOST: string;
-      PORT: number;
+      PORT: string;
       DATABASE: string;
       DATABASE_URL: string;
     };

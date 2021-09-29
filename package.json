@@ -4,14 +4,17 @@
   "description": "This project is intended to show the power of scale by using clean architecture in a project, even with an application with \"simple\" functionality such as a ToDo List.",
   "main": "dist/index.js",
   "scripts": {
-    "env:dev": "dotenv -e .env.development --",
-    "dev": "npm run env:dev -- ts-node --transpile-only src/index.ts",
+    "dev": "npm run env:dev -- ts-node --transpile-only -r ts-path-mapping/register src/index.ts",
     "test": "dotenv -e .env.test -- jest --passWithNoTests",
     "build": "tsc",
-    "prisma:generate": "npm run env:dev -- prisma generate --schema src/infrastructure/prisma/schema.prisma",
-    "prisma:migrate": "npm run env:dev -- prisma migrate dev --schema src/infrastructure/prisma/schema.prisma --skip-seed",
-    "prisma:reset": "npm run env:dev -- prisma migrate reset --schema src/infrastructure/prisma/schema.prisma --skip-seed",
-    "prisma:studio": "npm run env:dev -- prisma studio --schema src/infrastructure/prisma/schema.prisma"
+    "env": "dotenv -e .env.development --",
+    "prisma:pull": " prisma db pull --schema src/infrastructure/prisma/schema.prisma",
+    "prisma:generate": "npm run env -- prisma generate --schema src/infrastructure/prisma/schema.prisma",
+    "prisma:migrate": "npm run env -- prisma migrate dev --schema src/infrastructure/prisma/schema.prisma --name",
+    "prisma:migrate:run": "npm run env -- prisma migrate dev --schema src/infrastructure/prisma/schema.prisma --skip-seed",
+    "postprisma:migrate:run": "npm run prisma:generate",
+    "prisma:reset": "npm run env -- prisma migrate reset --schema src/infrastructure/prisma/schema.prisma --skip-seed",
+    "prisma:studio": "npm run env -- prisma studio --schema src/infrastructure/prisma/schema.prisma"
   },
   "repository": {
     "type": "git",
@@ -25,7 +28,6 @@
   },
   "homepage": "https://github.com/ramonrsm/clean-architecture-todo-list-app#readme",
   "devDependencies": {
-    "@types/dotenv-flow": "^3.2.0",
     "@types/jest": "^27.0.1",
     "@types/node": "^16.9.1",
     "@types/uuid": "^8.3.1",
@@ -36,7 +38,6 @@
     "husky": "^7.0.2",
     "jest": "^27.1.1",
     "lint-staged": "^11.1.2",
-    "npm-run-all": "^4.1.5",
     "prettier": "2.4.0",
     "prisma": "^3.1.1",
     "ts-jest": "^27.0.5",
@@ -46,11 +47,7 @@
   },
   "dependencies": {
     "@prisma/client": "^3.1.1",
-    "cross-env": "^7.0.3",
-    "dotenv": "^10.0.0",
     "dotenv-cli": "^4.0.0",
-    "dotenv-expand": "^5.1.0",
-    "dotenv-flow": "^3.2.0",
     "uuid": "^8.3.2"
   },
   "lint-staged": {
