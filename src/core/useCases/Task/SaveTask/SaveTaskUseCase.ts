@@ -4,7 +4,7 @@ import TaskUseCase from "@core/useCases/Task/TaskUseCase";
 
 export default class SaveTaskUseCase extends TaskUseCase {
   async execute(data: ISaveTaskDTO): Promise<void> {
-    const task = TaskAdapter.create(data);
+    const task = TaskAdapter.createEntity(data);
 
     await this.taskRepository.save(task);
   }

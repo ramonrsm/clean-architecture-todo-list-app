@@ -11,7 +11,7 @@ export default class UpdateTaskUseCase extends TaskUseCase {
       throw new NotFoundException(`Task com o id: '${id}' não encontrada.`);
     }
 
-    const updatedTask = TaskAdapter.create(Object.assign(oldTask, data));
+    const updatedTask = TaskAdapter.createEntity(Object.assign(oldTask, data));
 
     await this.taskRepository.update(id, updatedTask);
   }

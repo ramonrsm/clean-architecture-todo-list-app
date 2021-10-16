@@ -21,7 +21,7 @@ describe("Update task use case in memory", () => {
 
     const taskId = "7a4110ae-4204-4e36-9713-10c371a2c342";
 
-    const newTask = TaskAdapter.create({ id: taskId, todo: "Study JavaScript" });
+    const newTask = TaskAdapter.createEntity({ id: taskId, todo: "Study JavaScript" });
 
     await taskRepository.save(newTask);
 

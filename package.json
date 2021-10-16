@@ -4,10 +4,11 @@
   "description": "This project is intended to show the power of scale by using clean architecture in a project, even with an application with \"simple\" functionality such as a ToDo List.",
   "main": "dist/index.js",
   "scripts": {
-    "dev": "npm run env:dev -- ts-node --transpile-only -r ts-path-mapping/register src/index.ts",
-    "test": "dotenv -e .env.test -- jest --passWithNoTests",
-    "build": "tsc",
     "env": "dotenv -e .env.development --",
+    "dev": "npm run env -- ts-node --transpile-only -r ts-path-mapping/register src/index.ts",
+    "pretest": "npm run env -- prisma migrate reset --schema src/infrastructure/prisma/schema.prisma --skip-seed",
+    "test": "npm run env -- jest --passWithNoTests",
+    "build": "tsc",
     "prisma:pull": " prisma db pull --schema src/infrastructure/prisma/schema.prisma",
     "prisma:generate": "npm run env -- prisma generate --schema src/infrastructure/prisma/schema.prisma",
     "prisma:migrate": "npm run env -- prisma migrate dev --schema src/infrastructure/prisma/schema.prisma --name",
@@ -47,14 +48,15 @@
   },
   "dependencies": {
     "@prisma/client": "^3.1.1",
+    "dotenv": "^10.0.0",
     "dotenv-cli": "^4.0.0",
+    "dotenv-expand": "^5.1.0",
     "uuid": "^8.3.2"
   },
   "lint-staged": {
     "**/*.ts": [
       "npx prettier --write --ignore-unknown --stdin ./src",
-      "eslint --fix",
-      "npm test"
+      "eslint --fix"
     ]
   },
   "prisma": {

@@ -13,7 +13,7 @@ export interface ITask {
 }
 
 export default class Task {
-  readonly id?: string;
+  readonly id: string;
 
   todo: string;
 
